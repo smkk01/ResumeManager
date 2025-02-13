@@ -1,0 +1,68 @@
+﻿@model IEnumerable<CustomersMasterDetail.Models.Applicant>
+
+<br />
+<div class="container p-4 border">
+
+    <div class="row pb-2">
+
+        <div class="col">
+            <h1 class="text-primary">Applicants</h1>
+        </div>
+
+        <div class="col text-end p-1">
+            <a asp-controller="Applicant" asp-action="Create" class="btn btn-outline-primary"><i class="bi bi-plus-square-fill"></i>New Applicant</a>
+        </div>
+
+        <table class="table" id="myTable">
+            <thead>
+                <tr>
+                    <th>Id</th>
+
+                    <th>Name</th>
+
+                    <th>Gender</th>
+
+                    <th>Age</th>
+                    <th>Qualification</th>
+                    <th>TotalExperience</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@item.Gender</td>
+                        <td>@item.Age</td>
+                        <td>@item.Qualification</td>
+                        <td>@item.TotalExperience</td>
+                        <td>
+                            <a asp-controller="Applicant" asp-action="Update" asp-route-Id="@item.Id"
+                               class="btn btn-outline-success"><i class="bi bi-pencil-fill"></i></a>
+
+                            <a asp-controller="Applicant" asp-action="Delete" asp-route-Id="@item.Id"
+                               class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
+
+@section scripts{
+<script type="text/javascript">
+    $(document).ready( function () {
+        $('#myTable').DataTable();           
+       
+    } );
+ 
+</script>
+}

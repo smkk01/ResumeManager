@@ -1,0 +1,55 @@
+﻿@model IEnumerable<CustomersMasterDetail.Models.Customer>
+
+<br />
+<div class="container p-4 border">
+
+    <div class="row pb-2">
+
+        <div class="col">
+            <h1 class="text-primary">Customer</h1>
+        </div>
+
+        <div class="col text-end p-1">
+            <a asp-controller="Customer" asp-action="Create" class="btn btn-outline-primary"><i class="bi bi-plus-square-fill"></i>New Customer</a>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+
+                    <th>FirstName</th>
+
+                    <th>LastName</th>
+
+                    <th>Phone</th>
+                   
+                    <th></th>                    
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @foreach(var item in Model)
+                {
+                  <tr>
+                      <td>@item.Id</td>
+                        <td>@item.FirstName</td>
+                        <td>@item.LastName</td>
+                        <td>@item.Phone</td>
+                        <td>
+                        <a asp-controller="Customer" asp-action="Details" asp-route-Id="@item.Id"
+                         class="btn btn-outline-success"><i class="bi bi-pencil-fill"></i></a>
+                      
+                            <a asp-controller="Customer" asp-action="Delete" asp-route-Id="@item.Id"
+                               class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></a>
+                        </td>
+                  </tr>  
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+</div>

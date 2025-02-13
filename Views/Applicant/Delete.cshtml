@@ -1,0 +1,225 @@
+﻿@model CustomersMasterDetail.DTO.ApplicantDTO
+
+<div class="container-fluid col-12 mx-auto pt-0 p-0">
+   
+    <div class="text-center bg-danger">
+        <h1>Are you sure you want to delete this?</h1>
+    </div>
+    
+    
+    <div class="card">
+
+        <div class="card-header bg-secondary text-white text-center p-1" style="height:35px;">
+            <h5>Delete Applicant</h5>
+        </div>
+        <form id="ApplicationForm" enctype="multipart/form-data" asp-action="DeleteApplicant">
+            <input asp-for="Id" hidden />
+            <div class="container-fluid btn-group p-0 m-0">
+
+                <div class="col-8">
+                    <div class="row">
+
+                        <div class="col-6">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Name" class="control-label"></label>
+                                <input asp-for="Name" class="form-control-plaintext" readonly />
+                              
+                            </div>
+                        </div>
+                        
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label asp-for="Gender" class="control-label"></label>
+                                <input asp-for="Gender" class="form-control-plaintext" readonly />                                
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label asp-for="Age" class="form-control"></label>
+                                <input asp-for="Age" class="form-control-plaintext" readonly/>
+                               
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label asp-for="Qualification" class="form-control"></label>
+                                <input asp-for="Qualification" class="form-control-plaintext" readonly />
+                               
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label asp-for="TotalExperience" class="form-control"></label>
+                                <input asp-for="TotalExperience" class="form-control-plaintext" readonly/>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="form-group col-12 justify-content-center align-middle">
+                        <img id="Preview" src="~/images/@Model.PhotoUrl" alt="Logo" width="200" height="200"
+                             style="border:1px" ; margin-top:20 px;" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="container col-12 btn-group">
+
+                 <div class=" =container" col-6 pl-0 ml-0">
+                  <div class="col-md-12 p-0 m-0 bg-light">
+                    <table id="CodesTable" class="table table-borderless table-sm mb-0 pb-0">
+                        <thead>
+                            <tr>
+                                <th> Company Name</th>
+                                <th> Designation </th>
+                                <th> Year Worked </th>
+                               @*  <th style="width:60px;">
+                                    <button id='btnAddDetailRow' type="button" class="btn btn-sm btn-secondary visible" onclick="AddItem(this)">Add</button>
+                                </th> *@
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @for (int i = 0; i < Model.ExperienceDetail.Count; i++)
+                            {
+                                <tr>
+                                    <td>
+                                        <input asp-for="@Model.ExperienceDetail[i].CompanyName" class="form-control-plaintext" readonly />
+                                        
+                                    </td>
+                                    <td>
+                                        <input asp-for="@Model.ExperienceDetail[i].Designation" class="form-control-plaintext" readonly />
+                                        
+                                    </td>
+                                    <td>
+                                        <input asp-for="@Model.ExperienceDetail[i].YearsWorked" class="form-control-plaintext" readonly/>
+                                        
+                                    </td>
+                                   @*  <td style="width:60px;">
+
+                                        <button id='btnremove-@i' type="button" class="btn btn-sm btn-danger visible" onclick="DeleteItem(this)">
+                                            Delete
+                                        </button>
+                                    </td> *@
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+                  </div>
+                 </div>
+
+                <div class="container col-1">
+                </div>
+                <div class="container col-5">
+                    <div class="col-md-12 p-0 m-0 bg-light">
+                        <table id="SoftwareExpTable" class="table table-sm CodesTable">
+                            <thead>
+                                <tr>
+                                    <th> Software</th>
+                                    <th> Rate </th>
+                                    <th> Note </th>
+                                    @* <th style="width:60px;">
+                                        <button id='btnaddSoftware' type="button" class="btn btn-sm btn-secondary visible" onclick="AddItem(this)">Add</button>
+                                    </th> *@
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @for (int i = 0; i < Model.SoftwareExperience.Count; i++)
+                                {
+                                    <tr>
+                                        <td>
+                                            <select asp-for="@Model.SoftwareExperience[i].SoftwareId" class="form-control-plaintext" readonly
+                                                    asp-items="ViewBag.Software"></select>
+
+                                        </td>
+                                        <td>
+                                            <input type="hidden" asp-for="@Model.SoftwareExperience[i].IsHidden" />
+                                            <select asp-for="@Model.SoftwareExperience[i].Rating" class="form-control-plaintext" readonly
+                                                    asp-items="ViewBag.Rating"></select>
+
+                                        </td>
+                                        <td>
+                                            <input asp-for="@Model.SoftwareExperience[i].Notes" class="form-control-plaintext" readonly />
+                                        </td>
+                                       @*  <td style="width:60px;">
+
+                                            <button id='btnremoveSoft-@i' type="button" class="btn btn-sm btn-danger visible" onclick="DeleteItem(this)">
+                                                Delete
+                                            </button>
+                                        </td> *@
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="container-fluid btn-group p-0 m-0">
+                <div class="col-5 offset-2">
+                    <a asp-action="Index" asp-controller="Applicant" class="btn btn-primary form-control">Back To List</a>
+                </div>
+                <div class="col-5">
+                    <input type="submit" value="Delete" class="btn btn-success form-control" />
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        function AddItem(btn) {
+            var table;
+            table = document.getElementById('CodesTable');
+            var rows = table.getElementsByTagName('tr');
+            var rowOuterHtml = rows[rows.length - 1].outerHTML;
+
+            var lastrowIdx = rows.length - 2;
+            var nextrowIdx = eval(lastrowIdx) + 1;
+
+            rowOuterHtml = rowOuterHtml.replaceAll('_' + lastrowIdx + '_', '_' + nextrowIdx + '_');
+            rowOuterHtml = rowOuterHtml.replaceAll('[' + lastrowIdx + ']', '[' + nextrowIdx + ']');
+            rowOuterHtml = rowOuterHtml.replaceAll('-' + lastrowIdx + '-', '-' + nextrowIdx);
+
+            var newRow = table.insertRow();
+            newRow.innerHTML = rowOuterHtml;
+
+            var x = document.getElementsByTagName("INPUT");
+
+            for (var cnt = 0; cnt < x.length; cnt++) {
+                if (x[cnt].type == "text" && x[cnt].id.indexOf('_' + nextrowIdx + '_') > 0)
+                    x[cnt].value = '';
+                else if (x[cnt].type == "number" && x[cnt].id.indexOf('_' + nextrowIdx + '_') > 0)
+                    x[cnt].value = 0;
+            }
+        }
+
+        function DeleteItem(btn) {
+            var table = document.getElementById('CodesTable');
+            var rows = table.getElementsByTagName('tr');
+            if (rows.length == 2) {
+                alert("This Row Cannot Be Deleted");
+                return;
+            }
+            $(btn).closest('tr').remove();
+        }
+    </script>
+
+}
