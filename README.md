@@ -1,0 +1,1 @@
+An advanced Master Detail CRUD Front End Web Application which consumes the Back End WebApi for management of jobs applicants information with log in function. It was developed by using ASP.Net Core MVC, MSSQL, Javascripts, Jquery and Bootstrap 5. 
