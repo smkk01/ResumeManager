@@ -48,6 +48,7 @@ namespace CustomersMasterDetail.Controllers
                 _httpclient.DefaultRequestHeaders.Accept.Clear();
                 _httpclient.DefaultRequestHeaders.Accept.Add
                     (new MediaTypeWithQualityHeaderValue("application/json"));
+                _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("APIToken"));
 
                 HttpResponseMessage getData = await _httpclient.GetAsync($"GetCustomerById?Id={Id}");
                 if (getData.IsSuccessStatusCode)
@@ -73,6 +74,7 @@ namespace CustomersMasterDetail.Controllers
                 _httpclient.DefaultRequestHeaders.Accept.Clear();
                 _httpclient.DefaultRequestHeaders.Accept.Add
                     (new MediaTypeWithQualityHeaderValue("application/json"));
+                _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("APIToken"));
 
                 HttpResponseMessage getData = await _httpclient.GetAsync($"GetCustomerById?Id={Id}");
                 if (getData.IsSuccessStatusCode)
@@ -131,6 +133,7 @@ namespace CustomersMasterDetail.Controllers
                 _httpclient.DefaultRequestHeaders.Accept.Clear();
                 _httpclient.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
+                _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("APIToken"));
 
                 HttpResponseMessage getData = await _httpclient.PutAsJsonAsync("UpdateCustomer", customer);
 
@@ -154,6 +157,7 @@ namespace CustomersMasterDetail.Controllers
                 _httpclient.DefaultRequestHeaders.Accept.Clear();
                 _httpclient.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
+                _httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", HttpContext.Session.GetString("APIToken"));
 
                 HttpResponseMessage getData = await _httpclient.PutAsync($"DeleteCustomerById?Id={Id}", null);
 
